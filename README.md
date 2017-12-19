@@ -1,4 +1,4 @@
-# loopback-example-user-management
+# Identity Management Service (forked https://github.com/strongloop/loopback-example-user-management)
 
 ```
 $ git clone git@github.com:strongloop/loopback-example-user-management.git

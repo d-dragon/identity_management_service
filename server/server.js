@@ -7,6 +7,7 @@ var loopback = require('loopback');
 var boot = require('loopback-boot');
 var path = require('path');
 var bodyParser = require('body-parser');
+var oauth2 = require('loopback-component-oauth2');
 
 var app = module.exports = loopback();
 
@@ -28,9 +29,14 @@ app.start = function() {
     if (app.get('loopback-component-explorer')) {
       var explorerPath = app.get('loopback-component-explorer').mountPath;
       console.log('Browse your REST API at %s%s', baseUrl, explorerPath);
-    }
+    };
+	if (app.get('loopback-component-oauth2')) {
+		var oauth2Path = app.get('loopback-component-oauth2').mountPath;
+		console.log('OAuth2 at %s%s', baseUrl, oauth2Path);
+	}
   });
 };
+
 
 // Bootstrap the application, configure models, datasources and middleware.
 // Sub-apps like REST API are mounted via boot scripts.
@@ -41,3 +47,15 @@ boot(app, __dirname, function(err) {
   if (require.main === module)
     app.start();
 });
+
+// Add OAuth2 component so that providing Authenrization server
+var options = {
+	dataSource: 'app.dataSources.db',
+	loginPage: '/login',
+	loginPath: '/login'
+}
+
+oauth2.oAuth2Provider(
+	app,
+	options
+);
