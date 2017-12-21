@@ -24,6 +24,9 @@
     }
   },
   "files": {
+	  "loopback#static": {
+		  "params": "$!../client/public"
+	  }
   },
   "final": {
     "loopback#urlNotFound": {}

@@ -15,7 +15,7 @@ module.exports = function(User) {
       to: user.email,
       from: senderAddress,
       subject: 'Thanks for registering.',
-      template: path.resolve(__dirname, '../../server/views/verify.ejs'),
+      template: path.resolve(__dirname, '../../client/views/verify.ejs'),
       redirect: '/verified',
       user: user
     };

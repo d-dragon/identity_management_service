@@ -8,17 +8,34 @@ var boot = require('loopback-boot');
 var path = require('path');
 var bodyParser = require('body-parser');
 var oauth2 = require('loopback-component-oauth2');
+var session = require('express-session');
+var site = require('./site');
 
 var app = module.exports = loopback();
 
+//Add session support
+app.middleware('session', session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialzied: true
+}));
+
 // configure view handler
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '../client/views'));
 
 // configure body parser
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(loopback.token());
+
+app.get('/oauth', site.OAuth);
+app.get('/oauth/login', site.loginForm);
+app.get('/signup', site.signup);
+app.get('/oauth/account', site.account);
+app.get('/oauth/logout', site.logout);
+app.get('/oauth/callbackPage', site.callbackPage);
+app.get('/verified', site.verified);
 
 app.start = function() {
   // start the web server
@@ -34,9 +51,9 @@ app.start = function() {
 		var oauth2Path = app.get('loopback-component-oauth2').mountPath;
 		console.log('OAuth2 at %s%s', baseUrl, oauth2Path);
 	}
+
   });
 };
-
 
 // Bootstrap the application, configure models, datasources and middleware.
 // Sub-apps like REST API are mounted via boot scripts.
@@ -48,14 +65,3 @@ boot(app, __dirname, function(err) {
     app.start();
 });
 
-// Add OAuth2 component so that providing Authenrization server
-var options = {
-	dataSource: 'app.dataSources.db',
-	loginPage: '/login',
-	loginPath: '/login'
-}
-
-oauth2.oAuth2Provider(
-	app,
-	options
-);

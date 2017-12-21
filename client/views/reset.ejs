@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Change your password | Verik IOT</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+          <div class="panel panel-default">
+          <div class="panel-body">
+              <h1 class="text-center main-title">Change password for </h1>
+              <h4 class="text-center text-info"><%= email %></h4>
+              <% if (locals.errorMessage) { %>
+                <div class="alert alert-warning">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <strong>Warning!</strong> <%= errorMessage %>
+                </div>
+              <% } %>
+              <% if (!locals.done) { %>
+              <form class="form-signin" action="/reset?access_token=<%= accessToken %>" method="post">
+              <input name="password" type="password" class="form-control" placeholder="New password" required autofocus>
+              <input name="confirmation" type="password" class="form-control" placeholder="Confirm new password" required>
+              <button class="btn btn-lg btn-info btn-block" type="submit">
+                  Change password</button>
+              </form>
+              <% } else { %>
+                <div class="alert alert-success">
+                  <strong>Success!</strong> Your password has been changed successfully! Thank you.
+                </div>
+              <% } %>
+          </div>
+          </div>
+        </div>
+    </div>
+    </div>
+  </body>
+</html>

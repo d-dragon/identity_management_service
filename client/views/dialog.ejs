@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Request Permissions | Verik IOT</title>
+	<link rel="stylesheet" href="/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3">
+        	<div class="panel panel-default">
+        	<div class="panel-body">
+	            <div class="bs-callout bs-callout-primary">
+	            <h1 class="text-center main-title">Request Permissions</h1>
+				  <h4>Hi <strong><%= user.email ? user.email : '' %></strong>!</h4>
+					<p>Application <strong><%= client.name %></strong> is requesting access to your account.</p>
+					<p>Permissions requested: <strong><%= scopes %></strong></p>
+	            </div>
+	            <h4 class="application-scope text-warning">This application will be able to:</h4>
+	            <ul>
+	            	<li>Read your devices</li>
+	            	<li>Read your resources</li>
+	            	<li>Rename your resource</li>
+	            	<li>Control your devices</li>
+	            </ul>
+	            <form  class="text-center" action="/oauth/authorize/decision" method="post">
+	            <h4><lable>Do you approve?</lable></h4>
+  				<input name="transaction_id" type="hidden" value="<%= transactionId %>">
+	            <button class="btn btn-default" type="submit" value="Deny" id="deny">
+	                Deny</button>
+	            <button class="btn btn-info" type="submit" value="Allow" id="allow">
+	                Allow</button>
+	            </form>
+	        </div>
+	        </div>
+        </div>
+    </div>
+    </div>
+  </body>
+</html>

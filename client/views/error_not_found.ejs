@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Error 404 (Not Found) | Verik IOT</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style type="text/css" media="screen">
+		.panel {
+		    margin-top: 20px;
+		    padding: 20px 0px 20px 0px;
+		}
+		.info {
+			color: #777;
+    		text-decoration: none;
+		}
+	</style>
+  </head>
+  <body>
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3">
+        	<div class="panel panel-default">
+        	<div class="panel-body">
+        		<h4><strong><%= error %>. </strong><ins class="info">That’s an error.</ins></h4>
+	            <h5>The requested URL <%= url %> was not found on this server. <ins small class="info"> That’s all we know.</ins></h5>     
+	        </div>
+	        </div>
+        </div>
+    </div>
+    </div>
+  </body>
+</html>
