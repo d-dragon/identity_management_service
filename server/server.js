@@ -30,11 +30,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(loopback.token());
 
 app.get('/oauth', site.OAuth);
-app.get('/oauth/login', site.loginForm);
+app.get('/login', site.loginForm);
 app.get('/signup', site.signup);
-app.get('/oauth/account', site.account);
-app.get('/oauth/logout', site.logout);
-app.get('/oauth/callbackPage', site.callbackPage);
+app.get('/account', site.account);
+app.get('/logout', site.logout);
+app.get('/callbackPage', site.callbackPage);
 app.get('/verified', site.verified);
 
 app.start = function() {

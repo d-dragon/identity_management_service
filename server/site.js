@@ -7,12 +7,14 @@ exports.OAuth = function (req, res) {
 }
 
 exports.loginForm = function (req, res) {
-  if (req.user) return res.redirect('/')
-  res.render('login')
+	console.log("site.js loginForm");
+  if (req.user) return res.redirect('/');
+  res.render('login');
 }
 
 exports.account = [
-  login.ensureLoggedIn('/oauth/login'),
+  //login.ensureLoggedIn('/login'),
+  login.ensureLoggedIn(),
   function (req, res) {
     res.render('account', {user: req.user})
   }

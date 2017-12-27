@@ -24,38 +24,44 @@ module.exports = function(app) {
   });
 
   //log a user in
-  app.post('/login', function(req, res) {
-    User.login({
-      email: req.body.email,
-      password: req.body.password
-    }, 'user', function(err, token) {
-      if (err) {
-        if(err.details && err.code === 'LOGIN_FAILED_EMAIL_NOT_VERIFIED'){
-          res.render('reponseToTriggerEmail', {
-            title: 'Login failed',
-            content: err,
-            redirectToEmail: '/api/users/'+ err.details.userId + '/verify',
-            redirectTo: '/',
-            redirectToLinkText: 'Click here',
-            userId: err.details.userId
-          });
-        } else {
-          res.render('response', {
-            title: 'Login failed. Wrong username or password',
-            content: err,
-            redirectTo: '/',
-            redirectToLinkText: 'Please login again',
-          });
-        }
-        return;
-      }
-      res.render('home', {
-        email: req.body.email,
-        accessToken: token.id,
-        redirectUrl: '/api/users/change-password?access_token=' + token.id
-      });
-    });
-  });
+  //app.get('/oauth/login', function(req, res) {
+  //  console.log("calling user login");
+  //  console.log("username: " + req.body.email);
+  //  console.log("password" + req.body.password);
+
+  //  User.login({
+  //    email: req.body.email,
+  //    password: req.body.password
+  //  }, 'user', function(err, token) {
+  //    if (err) {
+  //  	  console.log("login failed");
+  //      if(err.details && err.code === 'LOGIN_FAILED_EMAIL_NOT_VERIFIED'){
+  //        res.render('reponseToTriggerEmail', {
+  //          title: 'Login failed',
+  //          content: err,
+  //          redirectToEmail: '/api/users/'+ err.details.userId + '/verify',
+  //          redirectTo: '/',
+  //          redirectToLinkText: 'Click here',
+  //          userId: err.details.userId
+  //        });
+  //      } else {
+  //        res.render('response', {
+  //          title: 'Login failed. Wrong username or password',
+  //          content: err,
+  //          redirectTo: '/',
+  //          redirectToLinkText: 'Please login again',
+  //        });
+  //      }
+  //      return;
+  //    }
+  //    console.log("rendering home page");
+  //    res.render('home', {
+  //      email: req.body.email,
+  //      accessToken: token.id,
+  //      redirectUrl: '/api/users/change-password?access_token=' + token.id
+  //    });
+  //  });
+  //});
 
   //log a user out
   app.get('/logout', function(req, res, next) {

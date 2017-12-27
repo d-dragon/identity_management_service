@@ -2,7 +2,7 @@
 <html >
   <head>
     <meta charset="UTF-8">
-    <title>Authorize an application</title>
+    <title>Sign In</title>
 	<link rel="stylesheet" href="/css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -15,12 +15,11 @@
         <div class="col-sm-6 col-md-6 col-md-offset-3">
         	<div class="panel panel-default">
         	<div class="panel-body">
-	            <h1 class="main-title">Authorize application</h1>
+	            <h1 class="main-title">Sign In</h1>
 	            <form class="form-signin" action="/oauth/login" method="post">
-	            <input name="username" type="text" class="form-control" placeholder="Email" required autofocus>
+	            <input name="email" type="text" class="form-control" placeholder="Email" required autofocus>
 	            <input name="password" type="password" class="form-control" placeholder="Password" required>
-	            <button class="btn btn-lg btn-info btn-block" type="submit">
-	                Sign In</button>
+	            <button type="submit" formmethod="post">Sign In</button>
 	            </form>
 	        </div>
 	        </div>

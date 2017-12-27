@@ -16,7 +16,7 @@ module.exports = function(server) {
 		tokenPath: '/oauth/token',
 		
 		//path to login endpoint
-		loginPage: '/oauth/login',
+		//loginPage: '/oauth/login',
 		loginPath: '/oauth/login',
 		
 		decisionPath:'/oauth/authorize/decision',
@@ -37,11 +37,11 @@ module.exports = function(server) {
 			options
 			);
 	
-	var auth = oauth2.authenticate(['/api', '/oauth'], { session: false, scope: 'email' });
+	var auth = oauth2.authenticate(['/api', '/protected', '/me', '/_internal'], { session: false, scope: 'email' });
 	server.middleware('auth:before', [
-			'/api/users/oauth/',
+			'/api/users/',
 	//		'/api/users/oauth/resources',
 	//		'/api/devices/*/oauth/resources/',
 	//		'/api/devices/*/oauth/groups/'
-			], auth);	
+				], auth);	
 };
